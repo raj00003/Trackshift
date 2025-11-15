@@ -1,0 +1,64 @@
+﻿name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  proto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-setup-action@v1
+      - run: buf lint proto
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --check --manifest-path edge-agent/Cargo.toml
+      - run: cargo clippy --manifest-path edge-agent/Cargo.toml -- -D warnings
+      - run: cargo test --manifest-path edge-agent/Cargo.toml
+  go:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module: [gateway, orchestrator]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: gofmt -w $(find ${{ matrix.module }} -name '*.go')
+      - run: go test ./...
+        working-directory: ${{ matrix.module }}
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install uv
+      - run: uv pip install -e ./ml-coordinator
+      - run: uv run python -m app.main train --dataset ../docs/SCHEMAS.md
+        working-directory: ml-coordinator
+  ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+        working-directory: ui-admin
+      - run: npm run lint
+        working-directory: ui-admin
+      - run: npm run build
+        working-directory: ui-admin

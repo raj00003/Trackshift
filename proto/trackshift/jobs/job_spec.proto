@@ -1,0 +1,59 @@
+﻿syntax = "proto3";
+
+package trackshift.jobs;
+
+option go_package = "github.com/trackshift/platform/proto/trackshift/jobs";
+
+import "google/protobuf/timestamp.proto";
+import "trackshift/common/common.proto";
+import "trackshift/intent/intent.proto";
+
+message JobSpec {
+  string job_id = 1;
+  trackshift.intent.Intent intent = 2;
+  repeated trackshift.intent.FileSpec files = 3;
+  repeated trackshift.intent.PathRequirement path_requirements = 4;
+}
+
+message JobStatus {
+  trackshift.common.JobState state = 1;
+  google.protobuf.Timestamp updated_at = 2;
+  trackshift.common.ErrorCode error_code = 3;
+  string message = 4;
+}
+
+message Job {
+  JobSpec spec = 1;
+  JobStatus status = 2;
+  google.protobuf.Timestamp created_at = 3;
+}
+
+message CreateJobRequest {
+  JobSpec spec = 1;
+}
+
+message CreateJobResponse {
+  Job job = 1;
+}
+
+message GetJobRequest {
+  string job_id = 1;
+}
+
+message GetJobResponse {
+  Job job = 1;
+}
+
+message ListJobsRequest {
+  trackshift.common.JobState filter_state = 1;
+}
+
+message ListJobsResponse {
+  repeated Job jobs = 1;
+}
+
+service JobService {
+  rpc CreateJob(CreateJobRequest) returns (CreateJobResponse);
+  rpc GetJob(GetJobRequest) returns (GetJobResponse);
+  rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
+}

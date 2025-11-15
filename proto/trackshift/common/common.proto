@@ -1,0 +1,79 @@
+﻿syntax = "proto3";
+
+package trackshift.common;
+
+option go_package = "github.com/trackshift/platform/proto/trackshift/common";
+
+import "google/protobuf/timestamp.proto";
+
+enum ManifestStatus {
+  MANIFEST_STATUS_UNSPECIFIED = 0;
+  MANIFEST_STATUS_RECEIVED = 1;
+  MANIFEST_STATUS_PROCESSING = 2;
+  MANIFEST_STATUS_ACCEPTED = 3;
+  MANIFEST_STATUS_REJECTED = 4;
+}
+
+enum IntegrityStatus {
+  INTEGRITY_STATUS_UNSPECIFIED = 0;
+  INTEGRITY_STATUS_PENDING = 1;
+  INTEGRITY_STATUS_OK = 2;
+  INTEGRITY_STATUS_FAILED = 3;
+}
+
+enum JobState {
+  JOB_STATE_UNSPECIFIED = 0;
+  JOB_STATE_QUEUED = 1;
+  JOB_STATE_RUNNING = 2;
+  JOB_STATE_COMPLETED = 3;
+  JOB_STATE_FAILED = 4;
+}
+
+enum Urgency {
+  URGENCY_UNSPECIFIED = 0;
+  URGENCY_LOW = 1;
+  URGENCY_MEDIUM = 2;
+  URGENCY_HIGH = 3;
+  URGENCY_CRITICAL = 4;
+}
+
+enum ReliabilityLevel {
+  RELIABILITY_LEVEL_UNSPECIFIED = 0;
+  RELIABILITY_LEVEL_THREE_NINES = 1;
+  RELIABILITY_LEVEL_FOUR_NINES = 2;
+  RELIABILITY_LEVEL_FIVE_NINES = 3;
+}
+
+enum DataSensitivity {
+  DATA_SENSITIVITY_UNSPECIFIED = 0;
+  DATA_SENSITIVITY_PUBLIC = 1;
+  DATA_SENSITIVITY_INTERNAL = 2;
+  DATA_SENSITIVITY_PHI = 3;
+  DATA_SENSITIVITY_PCI = 4;
+  DATA_SENSITIVITY_TOP_SECRET = 5;
+}
+
+enum PolicyDecision {
+  POLICY_DECISION_UNSPECIFIED = 0;
+  POLICY_DECISION_ALLOW = 1;
+  POLICY_DECISION_DENY = 2;
+  POLICY_DECISION_REQUIRE_REVIEW = 3;
+}
+
+enum ErrorCode {
+  ERROR_CODE_UNSPECIFIED = 0;
+  ERROR_CODE_INTENT_INVALID = 1;
+  ERROR_CODE_POLICY_DENIED = 2;
+  ERROR_CODE_UPLOAD_REJECTED = 3;
+  ERROR_CODE_SIGNATURE_INVALID = 4;
+  ERROR_CODE_INTEGRITY_FAILED = 5;
+  ERROR_CODE_INTERNAL = 6;
+}
+
+message Receipt {
+  string receipt_id = 1;
+  string job_id = 2;
+  IntegrityStatus integrity_status = 3;
+  google.protobuf.Timestamp issued_at = 4;
+  bytes immudb_digest = 5;
+}

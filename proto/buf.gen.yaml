@@ -1,0 +1,20 @@
+﻿version: v1
+plugins:
+  - plugin: buf.build/community/neoeinstein-prost
+    out: ../edge-agent/src/gen
+    opt:
+      - bytes=Bytes
+  - plugin: buf.build/community/neoeinstein-tonic
+    out: ../edge-agent/src/gen
+  - plugin: buf.build/protocolbuffers/go
+    out: ../proto/gen/go
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc/go
+    out: ../proto/gen/go
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/protocolbuffers/python
+    out: ../ml-coordinator/app/proto
+  - plugin: buf.build/grpc/python
+    out: ../ml-coordinator/app/proto

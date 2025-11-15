@@ -1,0 +1,24 @@
+{
+  "jobId": "01KA49MN9DHPKD0P9P6MBRW8XZ",
+  "fileName": "sample.bin",
+  "fileSize": "1048576",
+  "chunkSize": 4194304,
+  "blake3FileHash": "SI3iAvc72XbeTnBI9OHzmndthtWCtzSP9Tv0MrmH/Kg=",
+  "merkleRoot": "SI3iAvc72XbeTnBI9OHzmndthtWCtzSP9Tv0MrmH/Kg=",
+  "chunkRefs": [
+    {
+      "chunkHash": "SI3iAvc72XbeTnBI9OHzmndthtWCtzSP9Tv0MrmH/Kg=",
+      "length": 1048576
+    }
+  ],
+  "senderId": "LAPTOP-DC4OS5OD",
+  "metadata": [
+    {
+      "key": "gateway",
+      "value": "http://127.0.0.1:50051"
+    }
+  ],
+  "manifestStatus": "MANIFEST_STATUS_RECEIVED",
+  "integrityStatus": "INTEGRITY_STATUS_PENDING",
+  "createdAt": "2025-11-15T17:40:07.090601900Z"
+}

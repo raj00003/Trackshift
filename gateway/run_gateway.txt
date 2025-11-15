@@ -1,0 +1,2 @@
+set POSTGRES_DSN=postgres://trackshift:trackshift@localhost:5432/trackshift?sslmode=disable
+go run ./cmd/gateway

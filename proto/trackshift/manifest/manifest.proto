@@ -1,0 +1,54 @@
+﻿syntax = "proto3";
+
+package trackshift.manifest;
+
+option go_package = "github.com/trackshift/platform/proto/trackshift/manifest";
+
+import "google/protobuf/timestamp.proto";
+import "trackshift/common/common.proto";
+import "trackshift/chunkref/chunk_ref.proto";
+
+message ManifestMetadata {
+  string key = 1;
+  string value = 2;
+}
+
+message Manifest {
+  string job_id = 1;
+  string file_name = 2;
+  uint64 file_size = 3;
+  uint32 chunk_size = 4;
+  bytes blake3_file_hash = 5;
+  bytes merkle_root = 6;
+  repeated trackshift.chunkref.ChunkRef chunk_refs = 7;
+  bytes dilithium_sig = 8;
+  string sender_id = 9;
+  string public_key_id = 10;
+  repeated ManifestMetadata metadata = 11;
+  trackshift.common.ManifestStatus manifest_status = 12;
+  trackshift.common.IntegrityStatus integrity_status = 13;
+  google.protobuf.Timestamp created_at = 14;
+}
+
+message UploadManifestRequest {
+  Manifest manifest = 1;
+}
+
+message UploadManifestResponse {
+  trackshift.common.Receipt receipt = 1;
+}
+
+message UploadChunkRequest {
+  string job_id = 1;
+  uint32 chunk_index = 2;
+  bytes data = 3;
+}
+
+message UploadChunkResponse {
+  bool accepted = 1;
+}
+
+service ManifestIngestService {
+  rpc UploadManifest(UploadManifestRequest) returns (UploadManifestResponse);
+  rpc UploadChunk(stream UploadChunkRequest) returns (UploadChunkResponse);
+}

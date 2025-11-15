@@ -1,0 +1,22 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui-admin
+  template:
+    metadata:
+      labels:
+        app: ui-admin
+    spec:
+      containers:
+        - name: ui-admin
+          image: ghcr.io/trackshift/ui-admin:dev
+          ports:
+            - containerPort: 4173
+          env:
+            - name: VITE_GATEWAY_API
+              value: http://gateway.trackshift.svc.cluster.local:8085

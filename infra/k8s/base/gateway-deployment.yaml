@@ -1,0 +1,35 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+        - name: gateway
+          image: ghcr.io/trackshift/gateway:dev
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8085
+          env:
+            - name: POSTGRES_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: trackshift-secrets
+                  key: postgres-password
+            - name: IMMUDb_ENDPOINT
+              value: immudb:3322
+            - name: MINIO_ENDPOINT
+              value: http://minio:9000
+            - name: RUST_LOG
+              valueFrom:
+                configMapKeyRef:
+                  name: trackshift-config
+                  key: RUST_LOG

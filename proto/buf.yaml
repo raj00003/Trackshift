@@ -1,0 +1,10 @@
+﻿version: v1
+name: buf.build/trackshift/platform
+deps:
+  - buf.build/google/protobuf
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE

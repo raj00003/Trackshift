@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+package trackshift.chunkref;
+
+option go_package = "github.com/trackshift/platform/proto/trackshift/chunkref";
+
+message ChunkRef {
+  uint32 index = 1;
+  bytes chunk_hash = 2;
+  uint64 offset = 3;
+  uint32 length = 4;
+  string storage_hint = 5;
+  string path_id = 6;
+  repeated bytes merkle_path = 7;
+}

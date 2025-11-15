@@ -1,0 +1,43 @@
+﻿# General
+.DS_Store
+Thumbs.db
+.env
+.env.*
+*.log
+.tmp/
+node_modules/
+dist/
+build/
+coverage/
+.vscode/
+.idea/
+results/
+.sbom/
+
+# Rust
+/edge-agent/target/
+Cargo.lock
+
+# Go
+/go.work
+**/bin/
+**/vendor/
+
+# Python
+/__pycache__/
+*.pyc
+.ml-coordinator/.ruff_cache/
+.venv/
+
+# React
+/ui-admin/.turbo/
+/ui-admin/.cache/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Generated proto
+proto/gen/

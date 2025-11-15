@@ -1,0 +1,9 @@
+{"features": {"size_gb": 0.3, "criticality": 1.0, "reliability": 0.3, "priority": 1.0}, "label": "f1"}
+{"features": {"size_gb": 0.5, "criticality": 0.9, "reliability": 0.4, "priority": 0.9}, "label": "f1"}
+{"features": {"size_gb": 0.2, "criticality": 0.95, "reliability": 0.35, "priority": 1.0}, "label": "f1"}
+{"features": {"size_gb": 8.0, "criticality": 0.5, "reliability": 1.0, "priority": 0.4}, "label": "clinic"}
+{"features": {"size_gb": 11.0, "criticality": 0.45, "reliability": 0.95, "priority": 0.5}, "label": "clinic"}
+{"features": {"size_gb": 7.5, "criticality": 0.55, "reliability": 0.9, "priority": 0.45}, "label": "clinic"}
+{"features": {"size_gb": 2.5, "criticality": 0.4, "reliability": 0.7, "priority": 0.6}, "label": "standard"}
+{"features": {"size_gb": 3.2, "criticality": 0.3, "reliability": 0.65, "priority": 0.5}, "label": "standard"}
+{"features": {"size_gb": 1.7, "criticality": 0.35, "reliability": 0.6, "priority": 0.55}, "label": "standard"}

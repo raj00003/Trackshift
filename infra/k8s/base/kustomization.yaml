@@ -1,0 +1,25 @@
+﻿apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: trackshift
+resources:
+  - namespace.yaml
+  - gateway-deployment.yaml
+  - gateway-service.yaml
+  - orchestrator-deployment.yaml
+  - orchestrator-service.yaml
+  - ml-coordinator-deployment.yaml
+  - ui-admin-deployment.yaml
+  - ui-admin-service.yaml
+configMapGenerator:
+  - name: trackshift-config
+    literals:
+      - RUST_LOG=info
+      - GATEWAY_BIND=:8085
+      - ORCHESTRATOR_BIND=:8090
+secretGenerator:
+  - name: trackshift-secrets
+    literals:
+      - postgres-password=trackshift
+      - jwt-secret=dev-secret
+generatorOptions:
+  disableNameSuffixHash: true

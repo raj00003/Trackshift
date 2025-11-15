@@ -1,0 +1,42 @@
+﻿syntax = "proto3";
+
+package trackshift.decisionlog;
+
+option go_package = "github.com/trackshift/platform/proto/trackshift/decisionlog";
+
+import "google/protobuf/timestamp.proto";
+import "trackshift/common/common.proto";
+
+message PathDecision {
+  string path_id = 1;
+  double score = 2;
+  string reason = 3;
+}
+
+message PolicyEvent {
+  string policy_id = 1;
+  trackshift.common.PolicyDecision decision = 2;
+  string detail = 3;
+}
+
+message DlpEvent {
+  string provider = 1;
+  string verdict = 2;
+  google.protobuf.Timestamp decided_at = 3;
+}
+
+message Metric {
+  string name = 1;
+  double value = 2;
+  string unit = 3;
+}
+
+message DecisionLog {
+  string job_id = 1;
+  string edge_id = 2;
+  repeated PathDecision path_decisions = 3;
+  repeated PolicyEvent policy_events = 4;
+  repeated DlpEvent dlp_events = 5;
+  repeated Metric metrics = 6;
+  google.protobuf.Timestamp created_at = 7;
+}

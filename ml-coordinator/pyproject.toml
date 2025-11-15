@@ -1,0 +1,14 @@
+﻿[project]
+name = "ml-coordinator"
+version = "0.1.0"
+description = "Trackshift ML coordinator"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.2.0",
+    "typer[all]>=0.9.0",
+    "pydantic>=2.6",
+    "protobuf>=4.25",
+]
+
+[project.scripts]
+ml-coordinator = "app.main:app"

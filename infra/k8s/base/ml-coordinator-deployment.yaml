@@ -1,0 +1,23 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-coordinator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-coordinator
+  template:
+    metadata:
+      labels:
+        app: ml-coordinator
+    spec:
+      containers:
+        - name: ml-coordinator
+          image: ghcr.io/trackshift/ml-coordinator:dev
+          command: ["uv", "run", "python", "-m", "app"]
+          env:
+            - name: MODEL_BUCKET
+              value: s3://trackshift-models
+            - name: KAFKA_BROKERS
+              value: kafka:9092

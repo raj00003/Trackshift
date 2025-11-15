@@ -1,0 +1,29 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestrator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orchestrator
+  template:
+    metadata:
+      labels:
+        app: orchestrator
+    spec:
+      containers:
+        - name: orchestrator
+          image: ghcr.io/trackshift/orchestrator:dev
+          ports:
+            - containerPort: 8090
+          env:
+            - name: POSTGRES_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: trackshift-secrets
+                  key: postgres-password
+            - name: NATS_ENDPOINT
+              value: nats://nats:4222
+            - name: JOB_TOPIC
+              value: jobs.intent
