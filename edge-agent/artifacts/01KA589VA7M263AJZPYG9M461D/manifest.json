@@ -1,0 +1,25 @@
+{
+  "job_id": "01KA589VA7M263AJZPYG9M461D",
+  "file_name": "sample.bin",
+  "file_size": 1048576,
+  "chunk_size": 4194304,
+  "chunk_count": 1,
+  "blake3_file_hash_hex": "488de202f73bd976de4e7048f4e1f39a776d86d582b7348ff53bf432b987fca8",
+  "merkle_root_hex": "488de202f73bd976de4e7048f4e1f39a776d86d582b7348ff53bf432b987fca8",
+  "chunk_refs": [
+    {
+      "index": 0,
+      "offset": 0,
+      "length": 1048576,
+      "hash_hex": "488de202f73bd976de4e7048f4e1f39a776d86d582b7348ff53bf432b987fca8",
+      "path": "artifacts\\01KA589VA7M263AJZPYG9M461D\\chunks\\chunk-00000.bin"
+    }
+  ],
+  "sender_id": "LAPTOP-DC4OS5OD",
+  "metadata": [
+    {
+      "key": "gateway",
+      "value": "http://127.0.0.1:50052"
+    }
+  ]
+}

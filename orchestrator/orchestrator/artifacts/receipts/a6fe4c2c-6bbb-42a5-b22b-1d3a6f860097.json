@@ -1,0 +1,10 @@
+{
+  "receiptId": "3bb5e162-035d-4335-966b-80970da597e1",
+  "jobId": "a6fe4c2c-6bbb-42a5-b22b-1d3a6f860097",
+  "tenantId": "pilot",
+  "status": "COMPLETED",
+  "signedAt": "2025-11-16T02:40:29.3621917Z",
+  "signature": "6iVol//PfdvecZ0JdAVCEpvFzwyeTbowDMZtLwK0SDFcnorDQjWeky44MrZyapgOIKQTjUDaj5+sZZKl+IvSDw==",
+  "signatureAlg": "ED25519-SHA256",
+  "payloadHash": "2FIM1F54R5fWXPIiqUfREU08fASSi1z8sWqw1vm/Mxk="
+}
